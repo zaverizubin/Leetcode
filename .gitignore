@@ -1,0 +1,4 @@
+_ReSharper.Test/
+bin/
+obj/
+*.suo

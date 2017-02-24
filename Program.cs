@@ -11,89 +11,93 @@ namespace Test
 {
     class Program
     {
-        private static Test _myTest;
+        private static Leetcode _leetcode;
 
         static void Main(string[] args)
         {
-            _myTest = new Test();
+            _leetcode = new Leetcode();
 
-            //_myTest.HammingDistance(1,4);
+            //_leetcode.HammingDistance(1,4);
 
-            //_myTest.FindCompliment(5);
+            //_leetcode.FindCompliment(5);
 
             //myTest.ReverseString("abc");
 
-            //_myTest.BestProfit(new List<int>() { 10, 7, 5, 8, 11, 9 });
+            //_leetcode.BestProfit(new List<int>() { 10, 7, 5, 8, 11, 9 });
 
-            //_myTest.GetProductOfAllIntsExceptAtIndex(new int[]{5,1,2,4,3 });
+            //_leetcode.GetProductOfAllIntsExceptAtIndex(new int[]{5,1,2,4,3 });
 
-            //_myTest.GetHighestProduct(new List<int>() { 1, 2, 3, 3, 2, 1 });
+            //_leetcode.GetHighestProduct(new List<int>() { 1, 2, 3, 3, 2, 1 });
 
-            //_myTest.GetLargestNonRepeatingSubstring("wzrjugcptmrserlhhoaudcboimpdrpaqqrzmxddtqvluoweymgspitfshwwynwqfnqrnv");
+            //_leetcode.GetLargestNonRepeatingSubstring("wzrjugcptmrserlhhoaudcboimpdrpaqqrzmxddtqvluoweymgspitfshwwynwqfnqrnv");
 
-            //_myTest.LongestPalindromicSubstring("xyzlolololabccba");
+            //_leetcode.LongestPalindromicSubstring("xyzlolololabccba");
 
-            //_myTest.IslandInOcean(new[,] {{0, 1, 0, 0}, {1, 1, 1, 1}, {0, 1, 0, 0}, {1, 1, 0, 0}});
+            //_leetcode.IslandInOcean(new[,] {{0, 1, 0, 0}, {1, 1, 1, 1}, {0, 1, 0, 0}, {1, 1, 0, 0}});
 
-            //_myTest.StringRepresentationOfNumbers(15);
+            //_leetcode.StringRepresentationOfNumbers(15);
 
-            //_myTest.NimGame(5);s
+            //_leetcode.NimGame(5);s
 
-            //_myTest.SingleNumber(new int[] {17,12,5,-6,12,4,17,-5,2,-3,2,4,5,16,-3,-4,15,15,-4,-5,-6});
+            //_leetcode.SingleNumber(new int[] {17,12,5,-6,12,4,17,-5,2,-3,2,4,5,16,-3,-4,15,15,-4,-5,-6});
 
-            //_myTest.GetSum(5, 6);
+            //_leetcode.GetSum(5, 6);
 
-            //_myTest.AssignCookies(new int[]{1,2,2,2}, new int[]{1,2,1});
+            //_leetcode.AssignCookies(new int[]{1,2,2,2}, new int[]{1,2,1});
 
-            //_myTest.FindTheDifference("ab", "aba");
+            //_leetcode.FindTheDifference("ab", "aba");
 
-            //_myTest.AddDigits(12345)
+            //_leetcode.AddDigits(12345)
 
-            //_myTest.MaxDepthOfBinaryTree(new TreeNode(10){left = new TreeNode(2){left = new TreeNode(1){left = new TreeNode(0){right = new TreeNode(-1)}},right = new TreeNode(4){left = new TreeNode(3)}},right = new TreeNode(6){left = new TreeNode(5)}});
+            //_leetcode.MaxDepthOfBinaryTree(new TreeNode(10){left = new TreeNode(2){left = new TreeNode(1){left = new TreeNode(0){right = new TreeNode(-1)}},right = new TreeNode(4){left = new TreeNode(3)}},right = new TreeNode(6){left = new TreeNode(5)}});
 
-            //_myTest.MoveZeroes(new[] { 1, 0, 2, 3, 0, 1 });
+            //_leetcode.MoveZeroes(new[] { 1, 0, 2, 3, 0, 1 });
 
-            //_myTest.ClosestToZero(new int[]{});
+            //_leetcode.ClosestToZero(new int[]{});
 
-            //_myTest.MinMoves(new int[] { });
+            //_leetcode.MinMoves(new int[] { });
 
-            //_myTest.RansomNote("aa", "aba");
+            //_leetcode.RansomNote("aa", "aba");
 
-            //_myTest.IntersectionOfTwoArrays(new[] { 1, 2, 2, 1 }, new int[] { 2, 2 });
+            //_leetcode.IntersectionOfTwoArrays(new[] { 1, 2, 2, 1 }, new int[] { 2, 2 });
 
-            //_myTest.FirstUniqChar("coddoce");
+            //_leetcode.FirstUniqChar("coddoce");
 
-            //_myTest.IsSameTree(new TreeNode(0) { left = new TreeNode(2)}, new TreeNode(0) { left = new TreeNode(2) });
+            //_leetcode.IsSameTree(new TreeNode(0) { left = new TreeNode(2)}, new TreeNode(0) { left = new TreeNode(2) });
 
-            //_myTest.FindDisappearedNumbers(new int[] {3, 1, 1, 1});
+            //_leetcode.FindDisappearedNumbers(new int[] {3, 1, 1, 1});
 
-            //_myTest.ConvertToTitle("ZZZ");
+            //_leetcode.ConvertToTitle("ZZZ");
 
-            //_myTest.IsAnagram("a","b");
+            //_leetcode.IsAnagram("a","b");
 
-            //_myTest.ContainsDuplicate(new int[]{0,4,5,0,3,6});
+            //_leetcode.ContainsDuplicate(new int[]{0,4,5,0,3,6});
 
-            //_myTest.LongestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth");
+            //_leetcode.LongestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth");
 
-            //_myTest.Intersect(new int[] { 1, 2, 2, 1 }, new int[] { 2, 2 });
+            //_leetcode.Intersect(new int[] { 1, 2, 2, 1 }, new int[] { 2, 2 });
 
-            //_myTest.FindComplement(5);
+            //_leetcode.FindComplement(5);
 
-            //_myTest.FindMaxConsecutiveOnes(new int[] {1, 0, 1, 1, 0, 1});
+            //_leetcode.FindMaxConsecutiveOnes(new int[] {1, 0, 1, 1, 0, 1});
 
-            //_myTest.RomanToInt("DCCCXC");
+            //_leetcode.RomanToInt("DCCCXC");
 
-            //_myTest.MissingNumber(new [] { 0 });
+            //_leetcode.MissingNumber(new [] { 0 });
 
-            //_myTest.ReverseList(new ListNode(1){next = new ListNode(2){next = new ListNode(3){next =new ListNode(4)}}});
+            //_leetcode.ReverseList(new ListNode(1){next = new ListNode(2){next = new ListNode(3){next =new ListNode(4)}}});
 
-            //_myTest.DeleteNode(new ListNode(3){next = new ListNode(4)});
+            //_leetcode.DeleteNode(new ListNode(3){next = new ListNode(4)});
 
-            //_myTest.TwoSum(new []{2, 7, 11, 15}, 9 );
+            //_leetcode.TwoSum(new []{2, 7, 11, 15}, 9 );
 
-            //_myTest.AddStrings("3876620623801494171","6529364523802684779");
+            //_leetcode.AddStrings("3876620623801494171","6529364523802684779");
 
-            _myTest.FindRelativeRanks(new [] {3,10,8,9,4});
+            //_leetcode.FindRelativeRanks(new [] {3,10,8,9,4});
+
+            //_leetcode.InvertTree(new TreeNode(4) { left = new TreeNode(2) { left = new TreeNode(1), right = new TreeNode(3) }, right = new TreeNode(7) { left = new TreeNode(6), right = new TreeNode(9) } });
+
+            _leetcode.NumberOfBoomerangs(new [,] { { 0,0 }, { 1, 0 }, { -1, 0 }, {0 ,1} , {0, -1}});
         }
 
 
