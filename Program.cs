@@ -97,7 +97,11 @@ namespace Test
 
             //_leetcode.InvertTree(new TreeNode(4) { left = new TreeNode(2) { left = new TreeNode(1), right = new TreeNode(3) }, right = new TreeNode(7) { left = new TreeNode(6), right = new TreeNode(9) } });
 
-            _leetcode.NumberOfBoomerangs(new [,] { { 0,0 }, { 1, 0 }, { -1, 0 }, {0 ,1} , {0, -1}});
+            //_leetcode.NumberOfBoomerangs(new [,] { { 0,0 }, { 1, 0 }, { -1, 0 }, {0 ,1} , {0, -1}});
+
+           // _leetcode.ConvertToBase7(-7);
+
+            _leetcode.FindLuslength("aba", "daba");
         }
 
 

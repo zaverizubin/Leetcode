@@ -957,6 +957,25 @@ namespace Test
             return nums1;
         }
 
+        public TreeNode InvertTree(TreeNode root)
+        {
+            if(root is null)
+            return root;
+            TreeNode temp = root.left;
+            root.left = root.right;
+            root.right = temp;
+            if (root.left != null)
+            {
+                InvertTree(root.left);
+            }
+            if (root.right != null)
+            {
+                InvertTree(root.right);    
+            }
+            
+            return root;
+        }
+
     }
 
     public class TreeNode {

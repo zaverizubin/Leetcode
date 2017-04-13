@@ -1006,24 +1006,94 @@ namespace Test
             {
                 for (int j = i+1; j < points.GetLength(0)-1; j++)
                 {
-                    var dist1 = Math.Sqrt(Math.Pow(points[j, 0] - points[i, 0], 2) + Math.Pow(points[j, 1] - points[i, 1], 2));
-                    var dist2 = Math.Sqrt(Math.Pow(points[j+1, 0] - points[i, 0], 2) + Math.Pow(points[j+1, 1] - points[i, 1], 2));
-                    if ((int)dist1 == (int)dist2)
-                        count += 2;
 
-                    dist1 = Math.Sqrt(Math.Pow(points[i, 0] - points[j, 0], 2) + Math.Pow(points[i, 1] - points[j, 1], 2));
-                    dist2 = Math.Sqrt(Math.Pow(points[j+1, 0] - points[j, 0], 2) + Math.Pow(points[j+1, 1] - points[j, 1], 2));
-                    if ((int)dist1 == (int)dist2)
-                        count += 2;
-
-                    dist1 = Math.Sqrt(Math.Pow(points[i, 0] - points[j + 1, 0], 2) + Math.Pow(points[i, 1] - points[j + 1, 1], 2));
-                    dist2 = Math.Sqrt(Math.Pow(points[j, 0] - points[j + 1, 0], 2) + Math.Pow(points[j, 1] - points[j + 1, 1], 2));
-                    if ((int)dist1 == (int)dist2)
-                        count += 2;
+                    for (int k = j + 1; k < points.GetLength(0); k++)
+                    {
+                        Console.WriteLine((i + 1) + "," + (j + 1) + "," + (k + 1));
+                        var dist1 = Math.Sqrt(Math.Pow(points[j, 0] - points[i, 0], 2) + Math.Pow(points[j, 1] - points[i, 1], 2));
+                        var dist2 = Math.Sqrt(Math.Pow(points[k, 0] - points[i, 0], 2) + Math.Pow(points[k, 1] - points[i, 1], 2));
+                        if ((int)dist1 == (int)dist2)
+                            count += 1;
+                    }
                 }
-               
             }
             return count;
+        }
+
+        public string ConvertToBase7(int num)
+        {
+            /*
+          Given an integer, return its base 7 string representation.
+        Example 1:
+        Input: 100
+        Output: "202"
+          */
+            var characters = new List<string>();
+            int quotient = Math.Abs(num);
+            while (quotient >= 7)
+            {
+                int remainder = quotient % 7;
+                quotient = quotient / 7;
+                characters.Insert(0, remainder.ToString());
+            }
+            characters.Insert(0, (quotient).ToString());
+            return num >= 0 ? String.Join("", characters) : '-'+String.Join("", characters);
+        }
+
+        public int FindLuslength(string a, string b)
+        {
+            /*
+             * Given a group of two strings, you need to find the longest uncommon subsequence of this group of two strings.
+               The longest uncommon subsequence is defined as the longest subsequence of one of these strings and this subsequence should not be any subsequence of the other strings.
+               A subsequence is a sequence that can be derived from one sequence by deleting some characters without changing the order of the remaining elements.
+               Trivially, any string is a subsequence of itself and an empty string is a subsequence of any string.
+               The input will be two strings, and the output needs to be the length of the longest uncommon subsequence. If the longest uncommon subsequence doesn't exist, return -1.
+             */
+            var maxLength1=-1; var maxLength2 = -1;
+            int i = a.Length;
+            
+            while(i > 0){
+                var str1 = a.Substring(0, i);
+                if(!b.Contains(str1)){
+                    maxLength1 = str1.Length;
+                    break;
+                }
+                i = i - 1;
+            }
+
+            i = b.Length;
+            while (i > 0)
+            {
+                var str1 = b.Substring(0, i);
+                if (!a.Contains(str1)){
+                    maxLength2 = str1.Length;
+                    break;
+                }
+                i = i - 1;
+            }
+            return maxLength2> maxLength1?maxLength2:maxLength1;
+        }
+
+        public int GetMinimumDifference(TreeNode root)
+        {
+            /*
+            Given a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.
+            Example:
+            Input:
+
+               1
+                \
+                 3
+                /
+               2
+
+            Output:
+            1
+            Explanation:
+            The minimum absolute difference is 1, which is the difference between 2 and 1 (or between 2 and 3).*/
+
+
+
         }
 
     }
