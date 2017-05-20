@@ -564,7 +564,7 @@ namespace Test
              */
             if (p == null && q == null) return true;
             if (p == null || q == null) return false;
-            if (p.Val != q.Val) return false;
+            if (p.val != q.val) return false;
            
             if (!IsSameTree(p.left, q.left)) return false;
             return IsSameTree(p.right, q.right);
@@ -1079,30 +1079,246 @@ namespace Test
             /*
             Given a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.
             Example:
-            Input:
-
-               1
-                \
-                 3
-                /
-               2
-
+            Input:               1
+                                   \
+                                    3
+                                  /
+                                 2
             Output:
             1
             Explanation:
             The minimum absolute difference is 1, which is the difference between 2 and 1 (or between 2 and 3).*/
+            var values = new List<int> { root.val };
+            GetValues(root, ref values);
+            int minValue = 0;
 
+            for (int i = 0; i <= values.Count - 2; i++)
+            {
+                for (int j = i + 1; j <= values.Count - 1; j++)
+                {
+                    if (minValue == 0)
+                    {
+                        minValue = Math.Abs(values[j] - values[i]);
+                    }
+                    else if (Math.Abs(values[j] - values[i]) < minValue)
+                    {
+                        minValue = Math.Abs(values[j] - values[i]);
+                    }
+                }
+            }
 
+            return minValue;
+        }
 
+        private void GetValues(TreeNode node, ref List<int> values)
+        {
+            if (node == null) return;
+
+            if (node.left != null)
+            {
+                values.Add(node.left.val);
+                GetValues(node.left, ref values);
+            }
+
+            if (node.right != null)
+            {
+                values.Add(node.right.val);
+                GetValues(node.right, ref values);
+            }
+        }
+
+        public string ReverseStr(string s, int k)
+        {
+            /*
+             Given a string and an integer k, you need to reverse the first k characters for every 2k characters
+             * counting from the start of the string. If there are less than k characters left,
+             * reverse all of them. If there are less than 2k but greater than or equal to k characters,
+             * then reverse the first k characters and left the other as original.
+             * The string consists of lower English letters only.
+               Length of the given string and k will in the range [1, 10000]
+             * 
+             * Example:
+                Input: s = "abcdefg", k = 2
+            Output: "bacdfeg"
+             */
+           
+            var chrArr = s.ToCharArray();
+            for (var i = 0; i < chrArr.Length; i = i +2*k)
+            {
+                var length = Math.Min(k, chrArr.Length - i);
+                var tempArr = new char[length];
+                Array.Copy(chrArr, i, tempArr, 0, length);
+                Array.Reverse(tempArr);
+                for(var j=0; j< tempArr.Length;j++)
+                {
+                    chrArr[i + j] = tempArr[j];
+                }
+            }
+            return new string(chrArr);
+        }
+
+        public bool DetectCapitalUse(string word)
+        {
+            /*
+             Given a word, you need to judge whether the usage of capitals in it is right or not.
+            We define the usage of capitals in a word to be right when one of the following cases holds:
+
+            All letters in this word are capitals, like "USA".
+            All letters in this word are not capitals, like "leetcode".
+            Only the first letter in this word is capital if it has more than one letter, like "Google".
+            Otherwise, we define that this word doesn't use capitals in a right way.
+             * 
+             * Example 1:
+            Input: "USA"
+            Output: True
+            Example 2:
+            Input: "FlaG"
+            Output: False
+             */
+
+            if(word.ToLowerInvariant() == word) return true;
+            if(word.ToUpperInvariant() == word) return true;
+            
+            var chrArr = word.ToCharArray();
+            if(Char.IsLower(chrArr[0])) return false;
+
+            for (var i = 1; i < chrArr.Length; i++)
+            {
+                if (!Char.IsLower(chrArr[i])) return false;
+            }
+            return true;
+        }
+
+        public int[] ConstructRectangle(int area)
+        {
+            /*
+             Design a rectangular web page, whose length L and width W satisfy the following requirements:
+            1. The area of the rectangular web page you designed must equal to the given target area.
+            2. The width W should not be larger than the length L, which means L >= W.
+            3. The difference between length L and width W should be as small as possible.
+            You need to output the length L and the width W of the web page you designed in sequence.
+             * Example:
+                Input: 4
+                Output: [2, 2]
+             * 
+             */
+            var sides = new []{area,1};
+            for(var i = 1; i <= area/2; i++)
+            {
+                if(area % i==0)
+                {
+                    if ( i>= area/i && (i - area / i) < (sides[0] - sides[1]))
+                    {
+                        sides = new[] { i, area / i };    
+                    }
+                    
+                }
+            }
+
+            return sides;
+
+        }
+
+        public int ArrayPairSum(int[] nums)
+        {
+            /*
+             Given an array of 2n integers, your task is to group these integers into n pairs of integer,
+             say (a1, b1), (a2, b2), ..., (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.
+            Example 1:
+            Input: [1,4,3,2]
+
+            Output: 4
+            Explanation: n is 2, and the maximum sum of pairs is 4.
+             */
+
+            Array.Sort(nums);
+            int sum = 0;
+            for(var i=0;i<nums.Length-1;i+=2)
+            {
+                sum += nums[i];
+            }
+
+            return sum;
+        }
+
+        public int MaxProfit(int[] prices)
+        {
+            /*
+             Say you have an array for which the ith element is the price of a given stock on day i.
+             Design an algorithm to find the maximum profit.
+             You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times).
+             However, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
+             */
+            if (prices.Length == 0 || prices.Length == 1) return 0;
+            int sellPrice = 0; int buyPrice = prices[0];
+
+            for (var i = 1; i < prices.Length; i++)
+            {
+                if (prices[i] > buyPrice)
+                {
+                    if(prices[i] > sellPrice)
+                        sellPrice = prices[i];
+                }
+                else
+                {
+                    buyPrice = prices[i];
+                }
+            }
+            return sellPrice > 0 ? sellPrice - buyPrice : 0;
+        }
+
+        public string[] FindWords(string[] words)
+        {
+            /*
+             * Given a List of words, return the words that can be typed using letters of
+             * alphabet on only one row's of American keyboard like the image below.
+             */
+            var firstRow = new List<char>(){'q','w','e','r','t','y','u','i','o','p'};
+            var secondRow = new List<char>() { 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l' };
+            var thirdRow = new List<char>() { 'z', 'x', 'c', 'v', 'b', 'n', 'm' };
+            var found = new List<string>();
+            foreach (var word in words)
+            {
+                var characters = word.ToCharArray();
+                bool isInRow = true;
+                foreach (var character in characters){
+                    if (firstRow.IndexOf(character) == -1){
+                        isInRow = false; break;
+                    }
+                }
+                if (isInRow) found.Add(word);
+                if(!isInRow)
+                {
+                    foreach (var character in characters)
+                    {
+                        if (secondRow.IndexOf(character) == -1){
+                            break;
+                        }
+                    }   
+                }
+                if (isInRow) found.Add(word);
+                if (!isInRow)
+                {
+                    foreach (var character in characters)
+                    {
+                        if (thirdRow.IndexOf(character) == -1){
+                            break;
+                        }
+                    }
+                }
+                if (isInRow) found.Add(word);
+            }
+            return found.ToArray();
         }
 
     }
 
+
     public class TreeNode {
-      public int Val;
+      public int val;
       public TreeNode left;
       public TreeNode right;
-      public TreeNode(int x) { Val = x; }
+      public TreeNode(int x) { val = x; }
     }
 
     public class ListNode {

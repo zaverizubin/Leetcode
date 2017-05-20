@@ -99,9 +99,23 @@ namespace Test
 
             //_leetcode.NumberOfBoomerangs(new [,] { { 0,0 }, { 1, 0 }, { -1, 0 }, {0 ,1} , {0, -1}});
 
-           // _leetcode.ConvertToBase7(-7);
+			//_leetcode.ConvertToBase7(-7);
 
-            _leetcode.FindLuslength("aba", "daba");
+            //_leetcode.FindLuslength("aba", "daba");
+
+            //_leetcode.ReverseStr("abcdefghi", 5);
+
+            //_leetcode.DetectCapitalUse("FlaG");
+
+            //_leetcode.ConstructRectangle(24);
+
+            //_leetcode.ArrayPairSum(new [] { 7, 3, 1, 0, 0, 6 });
+
+            //_leetcode.ArrayPairSum(new[] { 7, 3, 1, 0, 0, 6 });
+
+            //_leetcode.MaxProfit(new[] { 1, 4, 2 });
+
+            _leetcode.FindWords(new [] {"Hello", "Alaska", "Dad", "Peace"});
         }
 
 
