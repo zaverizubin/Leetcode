@@ -115,7 +115,17 @@ namespace Test
 
             //_leetcode.MaxProfit(new[] { 1, 4, 2 });
 
-            _leetcode.FindWords(new [] {"Hello", "Alaska", "Dad", "Peace"});
+            //_leetcode.FindWords(new [] {"Hello", "Alaska", "Dad", "Peace"});
+
+            //_leetcode.ReadBinaryWatch(7);
+
+            //_leetcode.CheckRecord("PPALLL");
+
+            //_leetcode.IsHappy(19);
+
+           //_leetcode.IsPowerOfThree(243);
+
+            _leetcode.DeleteDuplicates(new ListNode(1){next=new ListNode(1){next = new ListNode(1){next = new ListNode(2){next = new ListNode(2){next = new ListNode(3){next = new ListNode(3)}}}}}});
         }
 
 

@@ -1273,47 +1273,149 @@ namespace Test
              * Given a List of words, return the words that can be typed using letters of
              * alphabet on only one row's of American keyboard like the image below.
              */
-            var firstRow = new List<char>(){'q','w','e','r','t','y','u','i','o','p'};
-            var secondRow = new List<char>() { 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l' };
-            var thirdRow = new List<char>() { 'z', 'x', 'c', 'v', 'b', 'n', 'm' };
-            var found = new List<string>();
+            var rows = new List<string> { "qwertyuiop", "asdfghjkl", "zxcvbnm" };
+            var rowsDict = new Dictionary<char, int>();
+            var result = new List<string>();
+            for (var i = 0; i < rows.Count; i++)
+            {
+                foreach (var chr in rows[i].ToCharArray())
+                {
+                    rowsDict.Add(chr, i + 1);
+                }
+            }
+
             foreach (var word in words)
             {
-                var characters = word.ToCharArray();
-                bool isInRow = true;
-                foreach (var character in characters){
-                    if (firstRow.IndexOf(character) == -1){
-                        isInRow = false; break;
+                char[] letters = word.ToLowerInvariant().ToCharArray();
+                var row = rowsDict[letters[0]];
+                bool inRow = true;
+                for (var i = 1; i < letters.Length; i++)
+                {
+                    if (rowsDict[letters[i]] != row)
+                    {
+                        inRow = false;
+                        break;
                     }
                 }
-                if (isInRow) found.Add(word);
-                if(!isInRow)
+                if (inRow)
                 {
-                    foreach (var character in characters)
-                    {
-                        if (secondRow.IndexOf(character) == -1){
-                            break;
-                        }
-                    }   
+                    result.Add(word);
                 }
-                if (isInRow) found.Add(word);
-                if (!isInRow)
-                {
-                    foreach (var character in characters)
-                    {
-                        if (thirdRow.IndexOf(character) == -1){
-                            break;
-                        }
-                    }
-                }
-                if (isInRow) found.Add(word);
+
             }
-            return found.ToArray();
+
+            return result.ToArray();
+        }
+
+        public IList<string> ReadBinaryWatch(int num)
+        {
+            /*
+             * A binary watch has 4 LEDs on the top which represent the hours (0-11), 
+             * and the 6 LEDs on the bottom represent the minutes (0-59).
+               Each LED represents a zero or one, with the least significant bit on the right.
+             * Example:
+                Input: n = 1
+                Return: ["1:00", "2:00", "4:00", "8:00", "0:01", "0:02", "0:04", "0:08", "0:16", "0:32"]
+             */
+            var hours = new List<int>() {1, 2, 4, 8};
+            var minutes = new List<int>() { 1, 2, 4, 8, 16, 32 };
+
+            return null;
+        }
+
+        public bool CheckRecord(string s)
+        {
+            /*
+             You are given a string representing an attendance record for a student. The record only contains the following three characters:
+
+            'A' : Absent.
+            'L' : Late.
+            'P' : Present.
+            A student could be rewarded if his attendance record doesn't contain more than one 'A' (absent) or more than two continuous 'L' (late).
+
+            You need to return whether the student could be rewarded according to his attendance record.
+             * Example 1:
+                Input: "PPALLP"
+                Output: True
+             */
+
+            var absentCount = 0;
+            var chrArray = s.ToUpperInvariant().ToCharArray();
+            for (var i = 0; i < chrArray.Length; i++){
+                if (chrArray[i] == 'A'){
+                    if (absentCount == 0){
+                        absentCount = 1;
+                    }else{
+                        return false;
+                    }
+                }
+            }
+            if(s.IndexOf("LLL", StringComparison.Ordinal)!=-1){
+                return false;
+            }
+            return true;
+        }
+
+        public bool IsHappy(int n)
+        {
+            /*
+             Write an algorithm to determine if a number is "happy".
+             A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.
+             Example: 19 is a happy number
+
+                12 + 92 = 82
+                82 + 22 = 68
+                62 + 82 = 100
+                12 + 02 + 02 = 1
+             */
+
+            var count = 1;
+            while(count < 10000)
+            {
+                int sum = 0;
+                var chrArray = n.ToString().ToCharArray();
+                foreach (var chr in chrArray){
+                    sum += (int)Math.Pow(int.Parse(chr.ToString()), 2);
+                }
+                if(sum == 1){
+                    return true;
+                }
+                n = sum;
+                count += 1;
+            }
+            return false;
+        }
+
+        public bool IsPowerOfThree(int n)
+        {
+            /*
+            Given an integer, write a function to determine if it is a power of three.
+            Follow up:
+            Could you do it without using any loop / recursion?
+             */
+            return (n > 0 && 1162261467 % n == 0);
+        }
+
+        public ListNode DeleteDuplicates(ListNode head)
+        {
+            var node = head;
+            while(node != null && node.next!=null)
+            {
+                while (node.val == node.next.val && node.next.next!=null)
+                {
+                    node.next = node.next.next;
+                }
+                if (node.val == node.next.val) node.next = null;
+                node = node.next;
+            }
+            return head;
         }
 
     }
 
 
+ 
+  
     public class TreeNode {
       public int val;
       public TreeNode left;
