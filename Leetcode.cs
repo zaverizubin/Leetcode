@@ -564,7 +564,7 @@ namespace Test
              */
             if (p == null && q == null) return true;
             if (p == null || q == null) return false;
-            if (p.Val != q.Val) return false;
+            if (p.val != q.val) return false;
            
             if (!IsSameTree(p.left, q.left)) return false;
             return IsSameTree(p.right, q.right);
@@ -1076,8 +1076,8 @@ namespace Test
 
         public int GetMinimumDifference(TreeNode root)
         {
-            /*
-            Given a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.
+            
+            /*Given a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.
             Example:
             Input:
 
@@ -1091,18 +1091,339 @@ namespace Test
             1
             Explanation:
             The minimum absolute difference is 1, which is the difference between 2 and 1 (or between 2 and 3).*/
+            var values=new List<int> {root.val};
+            GetValues(root, ref values);
+            int minValue=0;
 
+            for (int i = 0; i <= values.Count-2; i++)
+            {
+                for (int j = i+1; j <= values.Count - 1; j++)
+                {
+                    if (minValue == 0)
+                    {
+                        minValue = Math.Abs(values[j] - values[i]); 
+                    }else if ( Math.Abs(values[j]- values[i]) < minValue)
+                    {
+                       minValue = Math.Abs(values[j] - values[i]); 
+                    }
+                }
+            }
 
+            return minValue;
 
         }
 
+        private void GetValues(TreeNode node, ref List<int> values)
+        {
+            if (node == null) return;
+
+            if (node.left != null)
+            {
+                values.Add(node.left.val);
+                GetValues(node.left, ref values);
+            }
+
+            if (node.right != null)
+            {
+                values.Add(node.right.val);
+                GetValues(node.right, ref values);
+            }
+        }
+
+        public string ReverseWords(string s)
+        {
+            /*
+             Given a string, you need to reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
+
+            Example 1:
+            Input: "Let's take LeetCode contest"
+            Output: "s'teL ekat edoCteeL tsetnoc"
+            Note: In the string, each word is separated by single space and there will not be any extra space in the string.
+             */
+
+            string[] arr = s.Split(new[] { ' ' });
+            for (var i =0;i < arr.Length;i++)
+            {
+                arr[i] = String.Join("", arr[i].ToCharArray().Reverse());
+            } 
+            return String.Join(" ", arr);
+
+        }
+
+        public int[] NextGreaterElement(int[] findNums, int[] nums)
+        {
+            /*
+             You are given two arrays (without duplicates) nums1 and nums2 where nums1’s elements are subset of nums2.
+             * Find all the next greater numbers for nums1's elements in the corresponding places of nums2.
+             The Next Greater Number of a number x in nums1 is the first greater number to its right in nums2. If it does not exist, output -1 for this number.
+             * Example 1:
+                Input: nums1 = [4,1,2], nums2 = [1,3,4,2].
+                Output: [-1,3,-1]
+                Explanation:
+                    For number 4 in the first array, you cannot find the next greater number for it in the second array, so output -1.
+                    For number 1 in the first array, the next greater number for it in the second array is 3.
+                    For number 2 in the first array, there is no next greater number for it in the second array, so output -1.
+             
+             */
+            for (var i = 0; i < findNums.Length; i++)
+            {
+                var index = Array.IndexOf(nums, findNums[i]);
+                if (index == -1 || index == nums.Length-1)
+                {
+                    findNums[i] = -1;
+                    continue;
+                }
+                
+                for (var j = index + 1; j < nums.Length; j++)
+                {
+                    if (nums[j] > findNums[i])
+                    {
+                        findNums[i] = nums[j];
+                        break;
+                    }
+                    if(j == nums.Length-1)
+                    {
+                        findNums[i] = -1; 
+                    }
+                }
+                    
+                
+            }
+
+            return findNums;
+        }
+
+        public int MaxProfit(int[] prices)
+        {
+            /*
+             * Say you have an array for which the ith element is the price of a given stock on day i.
+
+            If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.
+             * Example 1:
+                 Input: [7, 1, 5, 3, 6, 4]
+                 Output: 5
+
+                    max. difference = 6-1 = 5
+             */
+            if (prices.Length <= 1) return 0;
+
+            int min = prices[0]; 
+            int profit = 0;
+            for (var i = 1; i < prices.Length; i++)
+            {
+                if (prices[i] < min){
+                    min = prices[i];
+                }else if (prices[i] - min > profit)
+                {
+                   profit = prices[i] - min;
+                }
+
+            }
+          
+            return profit > 0 ? profit : 0;
+        }
+
+        public int DistributeCandies(int[] candies)
+        {
+            /*
+             Given an integer array with even length, where different numbers in this array represent different kinds of candies.
+             * Each number means one candy of the corresponding kind. You need to distribute these candies equally in number to brother and sister.
+             * Return the maximum number of kinds of candies the sister could gain.
+             * Input: candies = [1,1,2,2,3,3]
+                Output: 3
+                Explanation:
+                There are three different kinds of candies (1, 2 and 3), and two candies for each kind.
+                Optimal distribution: The sister has candies [1,2,3] and the brother has candies [1,2,3], too. 
+                The sister has three different kinds of candies. 
+             */
+            int count = 0;
+            var dict = new Dictionary<int, int>();
+            for (int i = 0; i < candies.Length; i++)
+            {
+                if (!dict.ContainsKey(candies[i]))
+                {
+                    count += 1;
+                    dict.Add(candies[i], 1);
+                }
+            }
+            return count > candies.Length / 2 ? candies.Length / 2 : count;
+
+        }
+
+        public string[] FindWords(string[] words)
+        {
+            /*
+             Given a List of words, return the words that can be typed using letters of alphabet on only one row's of American keyboard like the image below.
+             */
+
+            var rows = new List<string>{"qwertyuiop", "asdfghjkl", "zxcvbnm"};
+            var rowsDict = new Dictionary<char, int>();
+            var result = new List<string>();
+            for (var i=0; i<rows.Count; i++)
+            {
+                foreach (var chr in rows[i].ToCharArray()){
+                   rowsDict.Add(chr, i+1); 
+                }
+            }
+
+            foreach (var word in words)
+            {
+                char[] letters = word.ToLowerInvariant().ToCharArray();
+                var row = rowsDict[letters[0]];
+                bool inRow = true;
+                for (var i = 1; i<letters.Length; i++){
+                    if (rowsDict[letters[i]] != row){
+                        inRow = false;
+                        break;
+                    }
+                }
+                if (inRow){
+                    result.Add(word);
+                }
+
+            }
+
+            return result.ToArray();
+
+        }
+
+        public int FibbonaciNumber(int n)
+        {
+            if (n==0) return 0;
+            if (n==1) return 1;
+            var series = new List<int>() { 0, 1 };
+            int i = series.Count;
+            while(i < n)
+            {
+                series.Add(series[i - 1] + series[i-2]);
+                i++;
+            }
+            return series[n - 1];
+        }
+
+        public List<TreeNode> NodesAtSameLevel(TreeNode node, List<TreeNode> nodes, int atDepth, int level)
+        {
+            /*
+             For a given B-Tree return all nodes at a given level
+             */
+            
+            if (node == null) return nodes;
+            if (nodes == null) nodes = new List<TreeNode>();
+            if (atDepth == level)
+            {
+                nodes.Add(node);
+               
+            }else {
+                if (node.left != null)
+                    NodesAtSameLevel(node.left, nodes, atDepth, level + 1);
+                if (node.right != null)
+                    NodesAtSameLevel(node.right, nodes, atDepth, level + 1);
+            }    
+            return nodes;
+        }
+
+        public TreeNode MergeTrees(TreeNode t1, TreeNode t2)
+        {
+            /*
+             * Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees 
+             * are overlapped while the others are not.
+                You need to merge them into a new binary tree. The merge rule is that if two nodes overlap, 
+             * then sum node values up as the new value of the merged node. Otherwise, the NOT null node will be used as the node of new tree.
+             */
+            if (t1 == null && t2 == null)
+                return null;
+
+            if (t1 != null && t2 != null)
+                t1.val += t2.val;
+
+            if(t1 == null)
+                t1 = new TreeNode(t2.val);
+
+            t1.left = MergeTrees(t1.left, t2 != null ? t2.left : null);
+            t1.right = MergeTrees(t1.right, t2 != null ? t2.right : null);
+
+            return t1;
+        }
+
+        public IList<double> AverageOfLevels(TreeNode root)
+        {
+            var list = new List<IList<double>>();
+            var averageList = new List<double>();
+            GetAverages(root, list, 0);
+            foreach (var x in list)
+            {
+                var sum = x.Sum();
+                averageList.Add(sum / x.Count);
+            }
+            return averageList;
+        }
+
+        private void GetAverages(TreeNode node, IList<IList<double>> averages, int level)
+        {
+            if (node != null)
+            {
+                if (averages.Count > level)
+                {
+                    averages[level].Add(node.val);
+                }
+                else
+                {
+                    var list = new List<double> { node.val };
+                    averages.Add(list);
+                }
+
+                GetAverages(node.left, averages, level + 1);
+                GetAverages(node.right, averages, level + 1);
+            }
+            
+        }
+
+        public string[] FindRestaurant(string[] list1, string[] list2)
+        {
+            /*
+             * Suppose Andy and Doris want to choose a restaurant for dinner, and they both have a list of favorite restaurants represented by strings.
+                You need to help them find out their common interest with the least list index sum. If there is a choice tie between answers,
+                output all of them with no order requirement. You could assume there always exists an answer.
+             * Input:
+                ["Shogun", "Tapioca Express", "Burger King", "KFC"]
+                ["KFC", "Shogun", "Burger King"]
+                Output: ["Shogun"]
+             */
+            var common = new List<string>();
+            var dict1 = new Dictionary<string, int>();
+            for (var i=0; i<list1.Length ; i++)
+            {
+                dict1.Add(list1[i].ToLowerInvariant(),i);
+            }
+            int minimum = -1;
+            for (var i = 0; i < list2.Length; i++)
+            {
+                if (dict1.ContainsKey(list2[i].ToLowerInvariant()))
+                {
+                    int sum = dict1[list2[i].ToLowerInvariant()] + i;
+                    if (minimum == -1 || sum < minimum)
+                    {
+                        common.Clear();
+                        common.Add(list2[i]);
+                        minimum = sum;
+                    }
+                    else if (sum == minimum)
+                    {
+                        common.Add(list2[i]);
+                    }
+                }
+            }
+            return common.ToArray();
+        }
+
+       
     }
 
     public class TreeNode {
-      public int Val;
+      public int val;
       public TreeNode left;
       public TreeNode right;
-      public TreeNode(int x) { Val = x; }
+      public TreeNode(int x) { val = x; }
     }
 
     public class ListNode {

@@ -21,7 +21,7 @@ namespace Test
 
             //_leetcode.FindCompliment(5);
 
-            //myTest.ReverseString("abc");
+            //_leetcode.ReverseString("abc");
 
             //_leetcode.BestProfit(new List<int>() { 10, 7, 5, 8, 11, 9 });
 
@@ -99,11 +99,44 @@ namespace Test
 
             //_leetcode.NumberOfBoomerangs(new [,] { { 0,0 }, { 1, 0 }, { -1, 0 }, {0 ,1} , {0, -1}});
 
-           // _leetcode.ConvertToBase7(-7);
+            //_leetcode.ConvertToBase7(-7);
 
-            _leetcode.FindLuslength("aba", "daba");
+            //_leetcode.FindLuslength("aba", "daba");
+
+            //_leetcode.GetMinimumDifference(new TreeNode(1){left = null,right = new TreeNode(3) { left = new TreeNode(2), right = null }});
+
+            //_leetcode.ReverseWords("Let's take LeetCode contest");
+
+            //_leetcode.NextGreaterElement(new[] { 2, 4 }, new[] { 1, 2, 3, 4 });
+
+            //_leetcode.MaxProfit(new[] { 3, 3, 5, 0, 0, 3, 1, 4 });
+
+            //_leetcode.DistributeCandies(new[] {1,1});
+
+            //_leetcode.FindWords(new []{"Hello", "Alaska", "Dad", "Peace"});
+
+            //_leetcode.MatrixReshape(new int[2,2] {{1, 2}, {3, 4}}, 2, 4);
+
+            //_leetcode.FibbonaciNumber(8181);
+
+            //_leetcode.NodesAtSameLevel(new TreeNode(4) { left = new TreeNode(2) { left = new TreeNode(1), right = new TreeNode(3) },right = new TreeNode(7){ left = new TreeNode(6),right = new TreeNode(9) }}, new List<TreeNode>(), 3, 1);
+
+            //_leetcode.MergeTrees(new TreeNode(4){left = new TreeNode(2) { left = new TreeNode(1), right = new TreeNode(3) },right = new TreeNode(7) {left = new TreeNode(6), right = new TreeNode(9)}},new TreeNode(4){left = new TreeNode(2) {left = new TreeNode(1), right = new TreeNode(3)},right = new TreeNode(7) {left = new TreeNode(6), right = new TreeNode(9)}});
+
+            var x = _leetcode.AverageOfLevels(new TreeNode(3)
+                {
+                    left = new TreeNode(9),
+                    right = new TreeNode(20)
+                        {
+                            left = new TreeNode(15),
+                            right = new TreeNode(7)
+                        }
+                });
+
+            //_leetcode.FindRestaurant(new[] { "Shogun", "KFC", "Burger King", "Tapioca Express" },new[] {"KFC", "Shogun", "Burger King"});
         }
-
-
     }
+
+   
+
 }
