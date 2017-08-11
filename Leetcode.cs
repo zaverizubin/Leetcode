@@ -30,13 +30,13 @@ namespace Test
             return count;
         }
 
-       /* public int FindCompliment(int x)
+        public int FindCompliment(int x)
         {
             
-             * Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.
+            /* Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.
             Note:
             The given integer is guaranteed to fit within the range of a 32-bit signed integer.
-            You could assume no leading zero bit in the integer’s binary representation.
+            You could assume no leading zero bit in the integer’s binary representation.*/
              
            
             //string s = Convert.ToString(x, 2);
@@ -51,7 +51,7 @@ namespace Test
             //int[] array = new int[1];
             //bitArray.CopyTo(array, 0);
             //return array[0];
-        }*/
+        }
 
         public string ReverseString(string s)
         {
@@ -1079,38 +1079,35 @@ namespace Test
             
             /*Given a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.
             Example:
-            Input:
-
-               1
-                \
-                 3
-                /
-               2
-
+            Input:               1
+                                   \
+                                    3
+                                  /
+                                 2
             Output:
             1
             Explanation:
             The minimum absolute difference is 1, which is the difference between 2 and 1 (or between 2 and 3).*/
-            var values=new List<int> {root.val};
+            var values = new List<int> { root.val };
             GetValues(root, ref values);
-            int minValue=0;
+            int minValue = 0;
 
-            for (int i = 0; i <= values.Count-2; i++)
+            for (int i = 0; i <= values.Count - 2; i++)
             {
-                for (int j = i+1; j <= values.Count - 1; j++)
+                for (int j = i + 1; j <= values.Count - 1; j++)
                 {
                     if (minValue == 0)
                     {
-                        minValue = Math.Abs(values[j] - values[i]); 
-                    }else if ( Math.Abs(values[j]- values[i]) < minValue)
+                        minValue = Math.Abs(values[j] - values[i]);
+                    }
+                    else if (Math.Abs(values[j] - values[i]) < minValue)
                     {
-                       minValue = Math.Abs(values[j] - values[i]); 
+                        minValue = Math.Abs(values[j] - values[i]);
                     }
                 }
             }
 
             return minValue;
-
         }
 
         private void GetValues(TreeNode node, ref List<int> values)
@@ -1192,37 +1189,7 @@ namespace Test
 
             return findNums;
         }
-
-        public int MaxProfit(int[] prices)
-        {
-            /*
-             * Say you have an array for which the ith element is the price of a given stock on day i.
-
-            If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.
-             * Example 1:
-                 Input: [7, 1, 5, 3, 6, 4]
-                 Output: 5
-
-                    max. difference = 6-1 = 5
-             */
-            if (prices.Length <= 1) return 0;
-
-            int min = prices[0]; 
-            int profit = 0;
-            for (var i = 1; i < prices.Length; i++)
-            {
-                if (prices[i] < min){
-                    min = prices[i];
-                }else if (prices[i] - min > profit)
-                {
-                   profit = prices[i] - min;
-                }
-
-            }
-          
-            return profit > 0 ? profit : 0;
-        }
-
+        
         public int DistributeCandies(int[] candies)
         {
             /*
@@ -1249,44 +1216,7 @@ namespace Test
             return count > candies.Length / 2 ? candies.Length / 2 : count;
 
         }
-
-        public string[] FindWords(string[] words)
-        {
-            /*
-             Given a List of words, return the words that can be typed using letters of alphabet on only one row's of American keyboard like the image below.
-             */
-
-            var rows = new List<string>{"qwertyuiop", "asdfghjkl", "zxcvbnm"};
-            var rowsDict = new Dictionary<char, int>();
-            var result = new List<string>();
-            for (var i=0; i<rows.Count; i++)
-            {
-                foreach (var chr in rows[i].ToCharArray()){
-                   rowsDict.Add(chr, i+1); 
-                }
-            }
-
-            foreach (var word in words)
-            {
-                char[] letters = word.ToLowerInvariant().ToCharArray();
-                var row = rowsDict[letters[0]];
-                bool inRow = true;
-                for (var i = 1; i<letters.Length; i++){
-                    if (rowsDict[letters[i]] != row){
-                        inRow = false;
-                        break;
-                    }
-                }
-                if (inRow){
-                    result.Add(word);
-                }
-
-            }
-
-            return result.ToArray();
-
-        }
-
+        
         public int FibbonaciNumber(int n)
         {
             if (n==0) return 0;
@@ -1416,9 +1346,295 @@ namespace Test
             return common.ToArray();
         }
 
-       
+        public string ReverseStr(string s, int k)
+        {
+            /*
+             Given a string and an integer k, you need to reverse the first k characters for every 2k characters
+             * counting from the start of the string. If there are less than k characters left,
+             * reverse all of them. If there are less than 2k but greater than or equal to k characters,
+             * then reverse the first k characters and left the other as original.
+             * The string consists of lower English letters only.
+               Length of the given string and k will in the range [1, 10000]
+             * 
+             * Example:
+                Input: s = "abcdefg", k = 2
+            Output: "bacdfeg"
+             */
+           
+            var chrArr = s.ToCharArray();
+            for (var i = 0; i < chrArr.Length; i = i +2*k)
+            {
+                var length = Math.Min(k, chrArr.Length - i);
+                var tempArr = new char[length];
+                Array.Copy(chrArr, i, tempArr, 0, length);
+                Array.Reverse(tempArr);
+                for(var j=0; j< tempArr.Length;j++)
+                {
+                    chrArr[i + j] = tempArr[j];
+                }
+            }
+            return new string(chrArr);
+        }
+
+        public bool DetectCapitalUse(string word)
+        {
+            /*
+             Given a word, you need to judge whether the usage of capitals in it is right or not.
+            We define the usage of capitals in a word to be right when one of the following cases holds:
+
+            All letters in this word are capitals, like "USA".
+            All letters in this word are not capitals, like "leetcode".
+            Only the first letter in this word is capital if it has more than one letter, like "Google".
+            Otherwise, we define that this word doesn't use capitals in a right way.
+             * 
+             * Example 1:
+            Input: "USA"
+            Output: True
+            Example 2:
+            Input: "FlaG"
+            Output: False
+             */
+
+            if(word.ToLowerInvariant() == word) return true;
+            if(word.ToUpperInvariant() == word) return true;
+            
+            var chrArr = word.ToCharArray();
+            if(Char.IsLower(chrArr[0])) return false;
+
+            for (var i = 1; i < chrArr.Length; i++)
+            {
+                if (!Char.IsLower(chrArr[i])) return false;
+            }
+            return true;
+        }
+
+        public int[] ConstructRectangle(int area)
+        {
+            /*
+             Design a rectangular web page, whose length L and width W satisfy the following requirements:
+            1. The area of the rectangular web page you designed must equal to the given target area.
+            2. The width W should not be larger than the length L, which means L >= W.
+            3. The difference between length L and width W should be as small as possible.
+            You need to output the length L and the width W of the web page you designed in sequence.
+             * Example:
+                Input: 4
+                Output: [2, 2]
+             * 
+             */
+            var sides = new []{area,1};
+            for(var i = 1; i <= area/2; i++)
+            {
+                if(area % i==0)
+                {
+                    if ( i>= area/i && (i - area / i) < (sides[0] - sides[1]))
+                    {
+                        sides = new[] { i, area / i };    
+                    }
+                    
+                }
+            }
+
+            return sides;
+
+        }
+
+        public int ArrayPairSum(int[] nums)
+        {
+            /*
+             Given an array of 2n integers, your task is to group these integers into n pairs of integer,
+             say (a1, b1), (a2, b2), ..., (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.
+            Example 1:
+            Input: [1,4,3,2]
+
+            Output: 4
+            Explanation: n is 2, and the maximum sum of pairs is 4.
+             */
+
+            Array.Sort(nums);
+            int sum = 0;
+            for(var i=0;i<nums.Length-1;i+=2)
+            {
+                sum += nums[i];
+            }
+
+            return sum;
+        }
+
+        public int MaxProfit(int[] prices)
+        {
+            /*
+             Say you have an array for which the ith element is the price of a given stock on day i.
+             Design an algorithm to find the maximum profit.
+             You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times).
+             However, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
+             */
+            if (prices.Length == 0 || prices.Length == 1) return 0;
+            int sellPrice = 0; int buyPrice = prices[0];
+
+            for (var i = 1; i < prices.Length; i++)
+            {
+                if (prices[i] > buyPrice)
+                {
+                    if(prices[i] > sellPrice)
+                        sellPrice = prices[i];
+                }
+                else
+                {
+                    buyPrice = prices[i];
+                }
+            }
+            return sellPrice > 0 ? sellPrice - buyPrice : 0;
+        }
+
+        public string[] FindWords(string[] words)
+        {
+            /*
+             * Given a List of words, return the words that can be typed using letters of
+             * alphabet on only one row's of American keyboard like the image below.
+             */
+            var rows = new List<string> { "qwertyuiop", "asdfghjkl", "zxcvbnm" };
+            var rowsDict = new Dictionary<char, int>();
+            var result = new List<string>();
+            for (var i = 0; i < rows.Count; i++)
+            {
+                foreach (var chr in rows[i].ToCharArray())
+                {
+                    rowsDict.Add(chr, i + 1);
+                }
+            }
+
+            foreach (var word in words)
+            {
+                char[] letters = word.ToLowerInvariant().ToCharArray();
+                var row = rowsDict[letters[0]];
+                bool inRow = true;
+                for (var i = 1; i < letters.Length; i++)
+                {
+                    if (rowsDict[letters[i]] != row)
+                    {
+                        inRow = false;
+                        break;
+                    }
+                }
+                if (inRow)
+                {
+                    result.Add(word);
+                }
+
+            }
+
+            return result.ToArray();
+        }
+
+        public IList<string> ReadBinaryWatch(int num)
+        {
+            /*
+             * A binary watch has 4 LEDs on the top which represent the hours (0-11), 
+             * and the 6 LEDs on the bottom represent the minutes (0-59).
+               Each LED represents a zero or one, with the least significant bit on the right.
+             * Example:
+                Input: n = 1
+                Return: ["1:00", "2:00", "4:00", "8:00", "0:01", "0:02", "0:04", "0:08", "0:16", "0:32"]
+             */
+            var hours = new List<int>() {1, 2, 4, 8};
+            var minutes = new List<int>() { 1, 2, 4, 8, 16, 32 };
+
+            return null;
+        }
+
+        public bool CheckRecord(string s)
+        {
+            /*
+             You are given a string representing an attendance record for a student. The record only contains the following three characters:
+
+            'A' : Absent.
+            'L' : Late.
+            'P' : Present.
+            A student could be rewarded if his attendance record doesn't contain more than one 'A' (absent) or more than two continuous 'L' (late).
+
+            You need to return whether the student could be rewarded according to his attendance record.
+             * Example 1:
+                Input: "PPALLP"
+                Output: True
+             */
+
+            var absentCount = 0;
+            var chrArray = s.ToUpperInvariant().ToCharArray();
+            for (var i = 0; i < chrArray.Length; i++){
+                if (chrArray[i] == 'A'){
+                    if (absentCount == 0){
+                        absentCount = 1;
+                    }else{
+                        return false;
+                    }
+                }
+            }
+            if(s.IndexOf("LLL", StringComparison.Ordinal)!=-1){
+                return false;
+            }
+            return true;
+        }
+
+        public bool IsHappy(int n)
+        {
+            /*
+             Write an algorithm to determine if a number is "happy".
+             A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.
+             Example: 19 is a happy number
+
+                12 + 92 = 82
+                82 + 22 = 68
+                62 + 82 = 100
+                12 + 02 + 02 = 1
+             */
+
+            var count = 1;
+            while(count < 10000)
+            {
+                int sum = 0;
+                var chrArray = n.ToString().ToCharArray();
+                foreach (var chr in chrArray){
+                    sum += (int)Math.Pow(int.Parse(chr.ToString()), 2);
+                }
+                if(sum == 1){
+                    return true;
+                }
+                n = sum;
+                count += 1;
+            }
+            return false;
+        }
+
+        public bool IsPowerOfThree(int n)
+        {
+            /*
+            Given an integer, write a function to determine if it is a power of three.
+            Follow up:
+            Could you do it without using any loop / recursion?
+             */
+            return (n > 0 && 1162261467 % n == 0);
+        }
+
+        public ListNode DeleteDuplicates(ListNode head)
+        {
+            var node = head;
+            while(node != null && node.next!=null)
+            {
+                while (node.val == node.next.val && node.next.next!=null)
+                {
+                    node.next = node.next.next;
+                }
+                if (node.val == node.next.val) node.next = null;
+                node = node.next;
+            }
+            return head;
+        }
+
     }
 
+
+ 
+  
     public class TreeNode {
       public int val;
       public TreeNode left;

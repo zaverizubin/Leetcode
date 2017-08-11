@@ -17,27 +17,27 @@ namespace Test
         {
             _leetcode = new Leetcode();
 
-            //_leetcode.HammingDistance(1,4);
+            _leetcode.HammingDistance(1,4);
 
-            //_leetcode.FindCompliment(5);
+            _leetcode.FindCompliment(5);
 
-            //_leetcode.ReverseString("abc");
+            _leetcode.ReverseString("abc");
 
-            //_leetcode.BestProfit(new List<int>() { 10, 7, 5, 8, 11, 9 });
+            _leetcode.BestProfit(new List<int>() { 10, 7, 5, 8, 11, 9 });
 
-            //_leetcode.GetProductOfAllIntsExceptAtIndex(new int[]{5,1,2,4,3 });
+            _leetcode.GetProductOfAllIntsExceptAtIndex(new int[]{5,1,2,4,3 });
 
-            //_leetcode.GetHighestProduct(new List<int>() { 1, 2, 3, 3, 2, 1 });
+            _leetcode.GetHighestProduct(new List<int>() { 1, 2, 3, 3, 2, 1 });
 
-            //_leetcode.GetLargestNonRepeatingSubstring("wzrjugcptmrserlhhoaudcboimpdrpaqqrzmxddtqvluoweymgspitfshwwynwqfnqrnv");
+            _leetcode.GetLargestNonRepeatingSubstring("wzrjugcptmrserlhhoaudcboimpdrpaqqrzmxddtqvluoweymgspitfshwwynwqfnqrnv");
 
-            //_leetcode.LongestPalindromicSubstring("xyzlolololabccba");
+            _leetcode.LongestPalindromicSubstring("xyzlolololabccba");
 
-            //_leetcode.IslandInOcean(new[,] {{0, 1, 0, 0}, {1, 1, 1, 1}, {0, 1, 0, 0}, {1, 1, 0, 0}});
+            _leetcode.IslandInOcean(new[,] {{0, 1, 0, 0}, {1, 1, 1, 1}, {0, 1, 0, 0}, {1, 1, 0, 0}});
 
             //_leetcode.StringRepresentationOfNumbers(15);
 
-            //_leetcode.NimGame(5);s
+            //_leetcode.NimGame(5);
 
             //_leetcode.SingleNumber(new int[] {17,12,5,-6,12,4,17,-5,2,-3,2,4,5,16,-3,-4,15,15,-4,-5,-6});
 
@@ -123,17 +123,33 @@ namespace Test
 
             //_leetcode.MergeTrees(new TreeNode(4){left = new TreeNode(2) { left = new TreeNode(1), right = new TreeNode(3) },right = new TreeNode(7) {left = new TreeNode(6), right = new TreeNode(9)}},new TreeNode(4){left = new TreeNode(2) {left = new TreeNode(1), right = new TreeNode(3)},right = new TreeNode(7) {left = new TreeNode(6), right = new TreeNode(9)}});
 
-            var x = _leetcode.AverageOfLevels(new TreeNode(3)
-                {
-                    left = new TreeNode(9),
-                    right = new TreeNode(20)
-                        {
-                            left = new TreeNode(15),
-                            right = new TreeNode(7)
-                        }
-                });
+            //_leetcode.AverageOfLevels(new TreeNode(3){left = new TreeNode(9),right = new TreeNode(20){left = new TreeNode(15),right = new TreeNode(7)}});
 
             //_leetcode.FindRestaurant(new[] { "Shogun", "KFC", "Burger King", "Tapioca Express" },new[] {"KFC", "Shogun", "Burger King"});
+           
+            //_leetcode.FindLuslength("aba", "daba");
+
+            //_leetcode.ReverseStr("abcdefghi", 5);
+
+            //_leetcode.DetectCapitalUse("FlaG");
+
+            //_leetcode.ConstructRectangle(24);
+
+            //_leetcode.ArrayPairSum(new [] { 7, 3, 1, 0, 0, 6 });
+            
+            //_leetcode.MaxProfit(new[] { 1, 4, 2 });
+
+            //_leetcode.FindWords(new [] {"Hello", "Alaska", "Dad", "Peace"});
+
+            //_leetcode.ReadBinaryWatch(7);
+
+            //_leetcode.CheckRecord("PPALLL");
+
+            //_leetcode.IsHappy(19);
+
+            //_leetcode.IsPowerOfThree(243);
+
+            //_leetcode.DeleteDuplicates(new ListNode(1){next=new ListNode(1){next = new ListNode(1){next = new ListNode(2){next = new ListNode(2){next = new ListNode(3){next = new ListNode(3)}}}}}});
         }
     }
 
